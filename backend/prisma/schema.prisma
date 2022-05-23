@@ -11,22 +11,22 @@ datasource db {
 }
 
 model productCategory {
-  id      Int      @id @default(autoincrement())
-  name String
+  id       Int       @id @default(autoincrement())
+  name     String
   products product[]
 }
 
 model product {
-  id      Int      @id @default(autoincrement())
-  sku String @unique // stock keeping unit
-  name String
-  price Float
-  weight Float
-  cartDesc String @db.VarChar(250)
-  longDesc String @db.Text
-  imagePath String
+  id         Int             @id @default(autoincrement())
+  sku        String          @unique // stock keeping unit
+  name       String
+  price      Float
+  weight     Float
+  cartDesc   String          @db.VarChar(250)
+  longDesc   String          @db.Text
+  imagePath  String
   categories productCategory @relation(fields: [categoryId], references: [id])
   categoryId Int
-  stock Float
-  published Boolean
+  stock      Float
+  published  Boolean
 }
