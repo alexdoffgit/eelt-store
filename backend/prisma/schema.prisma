@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model productCategory {
+  id      Int      @id @default(autoincrement())
+  name String
+  products product[]
+}
+
+model product {
+  id      Int      @id @default(autoincrement())
+  sku String @unique // stock keeping unit
+  name String
+  price Float
+  weight Float
+  cartDesc String @db.VarChar(250)
+  longDesc String @db.Text
+  imagePath String
+  categories productCategory @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  stock Float
+  published Boolean
+}
