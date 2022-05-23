@@ -1,0 +1,8 @@
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./.env
+    ports:
+      - "${PG_PORT:-5432}:5432"
