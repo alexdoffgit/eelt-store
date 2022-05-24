@@ -7,14 +7,8 @@ export type Product = {
     cartDesc: string
     longDesc: string
     imagePath: string
-    categories: Category[]
     stock: number
     published: boolean
-}
-
-export type Category = {
-    id: number
-    name: string
 }
 
 export interface IProduct {
