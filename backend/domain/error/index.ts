@@ -5,8 +5,8 @@ class HTTPError extends Error {
 }
 
 export class ImageFileNotFound extends HTTPError {
-    constructor(message: string, public statusCode: number) {
-        super(message, statusCode)
+    constructor(message: string) {
+        super(message, 404)
     }
 }
 
