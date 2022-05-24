@@ -15,3 +15,9 @@ export class ProductNotFound extends HTTPError {
         super(message, 404)
     }
 }
+
+export class ServerAddrAndPortErr extends HTTPError {
+    constructor(message: string, public httpMsg: string) {
+        super(message, 500)
+    }
+}
