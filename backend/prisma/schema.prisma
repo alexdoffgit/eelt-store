@@ -21,7 +21,6 @@ model product {
   sku        String          @unique // stock keeping unit
   name       String
   price      Float
-  weight     Float
   cartDesc   String          @db.VarChar(250)
   longDesc   String          @db.Text
   imagePath  String
