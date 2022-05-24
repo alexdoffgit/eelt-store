@@ -9,3 +9,9 @@ export class ImageFileNotFound extends HTTPError {
         super(message, statusCode)
     }
 }
+
+export class ProductNotFound extends HTTPError {
+    constructor(message: string) {
+        super(message, 404)
+    }
+}
