@@ -16,7 +16,7 @@ function productListAdapter(
         price: p.price,
         published: p.published,
         sku: p.sku,
-        stock: p.sku,
+        stock: p.stock,
         name: p.name
     }
 }
