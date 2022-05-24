@@ -17,7 +17,10 @@ export class ProductNotFound extends HTTPError {
 }
 
 export class ServerAddrAndPortErr extends HTTPError {
-    constructor(message: string, public httpMsg: string) {
+    public httpMsg: string
+    
+    constructor(message: string) {
         super(message, 500)
+        this.httpMsg = "internal server error"
     }
 }
