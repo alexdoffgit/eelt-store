@@ -37,7 +37,7 @@ export class ProductImplemented implements IProduct {
             if(p) {
                 return p.imagePath
             } else {
-                throw new ImageFileNotFound("image not found", 400)
+                throw new ImageFileNotFound("image not found")
             }
         } catch(e) {
             throw e
