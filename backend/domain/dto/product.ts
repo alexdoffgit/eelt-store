@@ -1,5 +1,5 @@
 export type ProductListResponse = {
-    id: string
+    id: number
     sku: string
     price: number
     cartDesc: string
