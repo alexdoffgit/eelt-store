@@ -7,4 +7,5 @@ export type ProductListResponse = {
     stock: string
     published: boolean
     imageUrl: string
+    name: string
 }
