@@ -16,3 +16,7 @@ export type Category = {
     id: number
     name: string
 }
+
+export interface IProduct {
+    getAll(): () => Promise<Product>
+}
