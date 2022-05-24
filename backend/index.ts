@@ -16,8 +16,7 @@ if(process.env.SERVER_PORT) {
     app.get("/products", productList(product))
     app.get("/product/image/:id", productImage(product))
     app.listen(process.env.SERVER_PORT, () => {
-        console.log(`server listening 
-        on port: ${process.env.SERVER_PORT}`)
+        console.log(`server listening on port: ${process.env.SERVER_PORT}`)
     })
 } else {
     process.exit()
