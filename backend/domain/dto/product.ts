@@ -4,7 +4,7 @@ export type ProductListResponse = {
     price: number
     cartDesc: string
     desc: string
-    stock: string
+    stock: number
     published: boolean
     imageUrl: string
     name: string
