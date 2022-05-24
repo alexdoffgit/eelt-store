@@ -1,7 +1,6 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { Request, Response } from "express";
 import { ProductListResponse } from "../../../domain/dto/product";
-import { ImageFileNotFound } from "../../../domain/error";
 import { IProduct, Product } from "../../../domain/model/product";
 
 function productListAdapter(
