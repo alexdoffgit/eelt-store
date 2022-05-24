@@ -3,7 +3,6 @@ export type Product = {
     sku: string
     name: string
     price: number
-    weight: number
     cartDesc: string
     longDesc: string
     imagePath: string
@@ -12,5 +11,5 @@ export type Product = {
 }
 
 export interface IProduct {
-    getAll(): () => Promise<Product[]>
+    getAll: () => Promise<Product[]>
 }
