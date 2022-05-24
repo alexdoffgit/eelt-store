@@ -1,24 +1,24 @@
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { Request, Response } from "express";
 import { ProductListResponse } from "../../../domain/dto/product";
+import { ImageFileNotFound } from "../../../domain/error";
 import { IProduct, Product } from "../../../domain/model/product";
 
-function productListAdapter(p: Product): ProductListResponse | null {
-    const address = process.env.SERVER_ADDR
-    const port = process.env.SERVER_PORT
-    if(address && port) {
-        return {
-            id: p.id,
-            cartDesc: p.cartDesc,
-            desc: p.longDesc,
-            imageUrl: `${address}:${port}/product/image/${p.id}`,
-            price: p.price,
-            published: p.published,
-            sku: p.sku,
-            stock: p.sku
-        }
+function productListAdapter(
+        p: Product, 
+        address: string, 
+        port: string
+    ): ProductListResponse {
+    return {
+        id: p.id,
+        cartDesc: p.cartDesc,
+        desc: p.longDesc,
+        imageUrl: `${address}:${port}/product/image/${p.id}`,
+        price: p.price,
+        published: p.published,
+        sku: p.sku,
+        stock: p.sku
     }
-
-    return null
 }
 
 export function productList(store: IProduct) {
