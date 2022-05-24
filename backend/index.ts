@@ -2,6 +2,7 @@ import express from "express";
 import { ProductImplemented } from "./adapter/prisma-mysql/product";
 import { productImage } from "./port/http/product/image";
 import { productList } from "./port/http/product/list";
+import { product as productSingle } from "./port/http/product/single";
 
 let dotenv = require('dotenv')
 let dotenvExpand = require('dotenv-expand')
@@ -13,6 +14,7 @@ const app = express()
 const product = new ProductImplemented()
 
 if(process.env.SERVER_PORT) {
+    app.get("/product/:id", productSingle(product))
     app.get("/products", productList(product))
     app.get("/product/image/:id", productImage(product))
     app.listen(process.env.SERVER_PORT, () => {
