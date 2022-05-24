@@ -10,13 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model productCategory {
-  id       Int       @id @default(autoincrement())
-  name     String
-  products product[]
-}
-
-model product {
+model Product {
   id         Int             @id @default(autoincrement())
   sku        String          @unique // stock keeping unit
   name       String
@@ -24,8 +18,6 @@ model product {
   cartDesc   String          @db.VarChar(250)
   longDesc   String          @db.Text
   imagePath  String
-  categories productCategory @relation(fields: [categoryId], references: [id])
-  categoryId Int
   stock      Float
   published  Boolean
 }
