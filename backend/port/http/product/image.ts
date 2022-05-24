@@ -5,9 +5,7 @@ import { ImageFileNotFound } from "../../../domain/error";
 export function productImage(store: IProduct) {
     return async function(req: Request, res: Response) {
         try {
-            const imagePath = await store.getFilePathById(
-                (req.params.id as unknown) as number
-            )
+            const imagePath = await store.getFilePathById(Number(req.params.id))
 
             res.sendFile(imagePath)
         } catch(e) {
