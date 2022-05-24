@@ -13,7 +13,8 @@ page("/product/:id", (ctx, next) => {
     params = ctx.params
     next()
 }, () => current = Product)
+page()
 
 </script>
 
-<svelte:component this={current} {params} />
+<svelte:component this={current} params={params} />
