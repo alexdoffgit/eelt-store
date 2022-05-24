@@ -18,5 +18,5 @@ export type Category = {
 }
 
 export interface IProduct {
-    getAll(): () => Promise<Product>
+    getAll(): () => Promise<Product[]>
 }
