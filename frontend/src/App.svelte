@@ -2,6 +2,7 @@
 import Fallback from "./Fallback.svelte";
 import ProductList from "./ProductList.svelte";
 import page from "page";
+import Product from "./Product.svelte";
 
 let current
 let params
