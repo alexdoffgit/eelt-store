@@ -6,4 +6,5 @@ export type ProductListResponse = {
     desc: string
     stock: string
     published: boolean
+    imageUrl: string
 }
