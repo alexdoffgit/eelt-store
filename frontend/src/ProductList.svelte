@@ -10,7 +10,7 @@
                 <th>SKU</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Weight</th>
+                <th>Cart Description</th>
                 <th>Description</th> <!-- longDesc -->
                 <th>Stock</th>
                 <th>Published</th>
