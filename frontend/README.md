@@ -3,7 +3,6 @@ to run this, copy env.example.js into env.js,
 fill out the variable, and then
 
 ```
-$ cd frontend
 $ npm install
 $ npm run dev
 ```
