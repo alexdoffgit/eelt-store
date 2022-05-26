@@ -36,7 +36,9 @@ export function product(store: IProduct) {
                     productPrisma, addr, port
                 )
 
-                res.json(payload)
+                res.json({
+                    product: payload
+                })
             } else {
                 throw new ServerAddrAndPortErr("can't read env value of SERVER_ADDR and SERVER_PORT")
             }
