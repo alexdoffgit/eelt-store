@@ -2,7 +2,7 @@
 import Fallback from "./Fallback.svelte";
 import ProductList from "./ProductList.svelte";
 import page from "page";
-import Product from "./Product.svelte";
+import ProductUpdate from "./ProductUpdate.svelte";
 
 let current
 let params
@@ -12,7 +12,7 @@ page("/products", () => current = ProductList)
 page("/product/:id", (ctx, next) => {
     params = ctx.params
     next()
-}, () => current = Product)
+}, () => current = ProductUpdate)
 page()
 
 </script>
