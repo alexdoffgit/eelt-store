@@ -3,13 +3,15 @@ image:
 
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - name: backend-process
+  - name: Express
     init: |
       cd backend
       npm i
       npx prisma db push
-  - name: frontend-process
+      gp sync-done Express
+  - name: Svelte
     init: |
+      gp sync-await Express
       cd frontend
       npm i
     command: |
