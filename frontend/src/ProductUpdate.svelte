@@ -4,16 +4,15 @@ import { writable } from "svelte/store";
 import { SERVER_URL } from "../env";
 
 export let params
-let product = writable({})
-let inputImg
-let image
+let product = writable({}) // product from fetch
+let inputImg // input file
+let image // img
 let imageUpdated = false
 
 function imageChange() {
   const file = inputImg.files[0]
 
   if(file) {
-    imageUpdated = true
 
     const reader = new FileReader()
     reader.addEventListener("load", function() {
@@ -21,17 +20,33 @@ function imageChange() {
     })
     reader.readAsDataURL(file)
 
-    return
+    imageUpdated = true
   }
-
-  imageUpdated = false
 }
 
 
 async function fetchFilled() {
     let res = axios.get(`${SERVER_URL}/product/${params.id}`)
     let data = (await res).data
-    $product = data.product
+    $product.id = data.id
+    $product.name = data.name
+    $product.sku = data.sku
+    $product.price = data.price
+    $product.cartDesc = data.cartDesc
+    $product.desc = data.desc
+    $product.stock = data.stock
+    $product.published = data.published
+
+    let resImg = axios.get(data.imageUrl, {
+      responseType: 'blob'
+    })
+    let imgData = (await resImg).data
+
+    const reader = new FileReader()
+    reader.addEventListener('load', function() {
+      image.setAttribute('src', reader.result)
+    })
+    reader.readAsDataURL(imgData)
 }
 
 async function submitStuff() {}
@@ -80,11 +95,7 @@ async function submitStuff() {}
       </div>
     </div>
     <div class="imager">
-      {#if imageUpdated}
-        <img bind:this={image} alt="product updated">
-      {:else}
-        <img src={$product.imageUrl} alt={`product ${params.id}`}>
-      {/if}
+      <img bind:this={image} alt="product">
       <input type="file" bind:this={inputImg} on:change={imageChange}>
     </div>
   </form>
