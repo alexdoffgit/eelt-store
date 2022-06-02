@@ -1,6 +1,12 @@
 import { ImageFileNotFound, ProductNotFound } from "../../domain/error";
 import { IProduct, Product } from "../../domain/model/product";
 import { prisma } from "./prisma";
+import { nanoid } from "nanoid";
+import { createReadStream, createWriteStream } from "fs";
+import { Buffer } from "buffer";
+import { join } from "path";
+import { promisify } from "util";
+import { pipeline } from "stream";
 
 export class ProductImplemented implements IProduct {
     async getAll() {
@@ -68,6 +74,28 @@ export class ProductImplemented implements IProduct {
                 return product
             } else {
                 throw new ProductNotFound("cannot find product")
+            }
+        } catch(e) {
+            throw e
+        }
+    }
+
+    async storeFile(file: Buffer, extension: string) {
+        try {
+            const newFileName = nanoid()
+            const filepath = process.env.FILE_STORE
+            const pump = promisify(pipeline)
+
+            if(filepath) {
+                const fullpath = join(filepath, `${newFileName}.${extension}`)
+                const readStream = createReadStream(file)
+                const writeStream = createWriteStream(fullpath)
+                await pump(readStream, writeStream)
+
+                return fullpath
+            } else {
+                throw new Error("FILE_STORE is not defined");
+                
             }
         } catch(e) {
             throw e
