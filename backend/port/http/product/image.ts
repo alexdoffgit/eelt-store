@@ -1,6 +1,10 @@
 import { IProduct } from "../../../domain/model/product";
 import { Request, Response } from "express";
 import { ImageFileNotFound } from "../../../domain/error";
+import multer from "multer";
+const upload = multer({
+    dest: '/home/arfe/Downloads/git_clone/eelt-store/backend/storage',
+})
 
 export function productImage(store: IProduct) {
     return async function(req: Request, res: Response) {
