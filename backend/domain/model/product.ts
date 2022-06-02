@@ -14,5 +14,5 @@ export interface IProduct {
     getAll: () => Promise<Product[]>
     getFilePathById: (id: number) => Promise<string>
     getById: (id: number) => Promise<Product>
-    storeFile: (filename: string) => Promise<string>
+    storeFile: (file: Buffer, extension: string) => Promise<string>
 }
