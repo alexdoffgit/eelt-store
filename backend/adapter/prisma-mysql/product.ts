@@ -73,4 +73,25 @@ export class ProductImplemented implements IProduct {
             throw e
         }
     }
+
+    async create(p: Product) {
+        try {
+            await prisma.product.create({
+                data: {
+                    cartDesc: p.cartDesc,
+                    imagePath: p.imagePath,
+                    longDesc: p.longDesc,
+                    name: p.name,
+                    price: p.price,
+                    published: p.published,
+                    sku: p.sku,
+                    stock: p.stock
+                }
+            })
+
+            return null
+        } catch(e) {
+            throw e
+        }
+    }
 }
