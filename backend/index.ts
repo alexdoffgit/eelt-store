@@ -3,6 +3,9 @@ import { ProductImplemented } from "./adapter/prisma-mysql/product";
 import { productImage } from "./port/http/product/image";
 import { productList } from "./port/http/product/list";
 import { product as productSingle } from "./port/http/product/single";
+import multer from "multer";
+import { join, extname } from "path";
+import { cwd } from "process";
 
 let dotenv = require('dotenv')
 let dotenvExpand = require('dotenv-expand')
@@ -10,7 +13,23 @@ let dotenvExpand = require('dotenv-expand')
 let myEnv = dotenv.config()
 dotenvExpand.expand(myEnv)
 
+const storepath = process.env.FILE_STORE
+
+const storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, storepath ? storepath : join(cwd(), 'storage'))
+    },
+    filename: function(req, file, callback) {
+        callback(null, `${Date.now()}.${extname(file.originalname)}`)
+    }
+})
+
+const upload = multer({
+    storage
+})
+
 const app = express()
+
 const product = new ProductImplemented()
 
 if(process.env.SERVER_PORT) {
