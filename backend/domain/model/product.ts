@@ -14,4 +14,5 @@ export interface IProduct {
     getAll: () => Promise<Product[]>
     getFilePathById: (id: number) => Promise<string>
     getById: (id: number) => Promise<Product>
+    create: (product: Product) => Promise<null> 
 }
